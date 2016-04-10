@@ -10,6 +10,7 @@
     
 import sys
 from time import time
+from sklearn.svm import SVC
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
@@ -19,7 +20,12 @@ from email_preprocess import preprocess
 ### labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
 
+features_train = features_train[:len(features_train)/100] 
+labels_train = labels_train[:len(labels_train)/100] 
 
+clf=SVC(C=10000.0,kernel="rbf")
+clf.fit(features_train,labels_train)
+print clf.score(features_test,labels_test)
 
 
 #########################################################
