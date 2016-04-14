@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 from prep_terrain_data import makeTerrainData
 from class_vis import prettyPicture
+from sklearn.ensemble.forest import RandomForestClassifier
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
@@ -24,21 +25,16 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
+
+### your code here!  name your classifier object clf if you want the 
+clf=RandomForestClassifier()
+clf.fit(features_train,labels_train)
+### draw the decision boundary with the text points overlaid
+prettyPicture(clf, features_test, labels_test)
+
 plt.show()
 ################################################################################
 
 
-### your code here!  name your classifier object clf if you want the 
-### visualization code (prettyPicture) to show you the decision boundary
 
 
-
-
-
-
-
-
-try:
-    prettyPicture(clf, features_test, labels_test)
-except NameError:
-    pass
